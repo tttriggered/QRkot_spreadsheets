@@ -1,0 +1,23 @@
+1. Инициализация Alembic:
+alembic init alembic
+
+2. Создание новой миграции:
+alembic revision --autogenerate -m "Имя миграции"
+
+3. Применение миграций:
+alembic upgrade head
+
+4. Откат последней миграции:
+alembic downgrade -1
+
+5. Проверка текущей версии базы данных:
+alembic current
+
+6. Отображение списка всех версий:
+alembic history
+
+7. Применение конкретной версии миграции:
+alembic upgrade <revision>
+
+8. Откат к конкретной версии миграции:
+alembic downgrade <revision>
