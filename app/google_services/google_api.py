@@ -56,8 +56,7 @@ async def spreadsheets_update_value(
 
     now_date_time = datetime.now().strftime(FORMAT)
     difference_in_days = (func.julianday(CharityProject.close_date) -
-                          func.julianday(CharityProject.create_date)
-    )
+                          func.julianday(CharityProject.create_date))
 
     service = await (wrapper_services.discover
                      ('sheets', 'v4'))
