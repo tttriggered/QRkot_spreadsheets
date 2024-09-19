@@ -1,3 +1,5 @@
+from http import HTTPStatus
+
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -18,7 +20,7 @@ async def check_project_exists(project_id: int, session: AsyncSession) -> (
 
     if project is None:
         raise HTTPException(
-            status_code=404,
+            status_code=HTTPStatus.NOT_FOUND,
             detail=PROJECT_NOT_FOUND
         )
 
@@ -35,7 +37,7 @@ async def check_name_duplicate(project_name: str,
 
     if project_id:
         raise HTTPException(
-            status_code=400,
+            status_code=HTTPStatus.BAD_REQUEST,
             detail=DUPLICATE_PROJECT_NAME
         )
 
@@ -52,7 +54,7 @@ async def check_new_full_amount_bigger_than_invested_amount(
 
     if invested_amount > new_full_amount:
         raise HTTPException(
-            status_code=400,
+            status_code=HTTPStatus.BAD_REQUEST,
             detail=INVESTMENT_AMOUNT_TOO_LOW
         )
 
@@ -69,7 +71,7 @@ async def check_project_already_got_donation(project_id: int,
 
     if invested_amount:
         raise HTTPException(
-            status_code=400,
+            status_code=HTTPStatus.BAD_REQUEST,
             detail=PROJECT_HAS_FUNDING
         )
 
@@ -86,7 +88,7 @@ async def check_project_is_closed(project_id: int,
 
     if project_status:
         raise HTTPException(
-            status_code=400,
+            status_code=HTTPStatus.BAD_REQUEST,
             detail=CLOSED_PROJECT_EDIT
         )
 

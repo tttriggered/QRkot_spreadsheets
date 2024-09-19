@@ -1,32 +1,33 @@
 from app.core.config import settings
 
 # Формат даты и времени для использования в отчетах
-FORMAT = '%Y/%m/%d %H:%M:%S'
+FORMAT: str = '%Y/%m/%d %H:%M:%S'
 
 # Константы для настройки таблицы в Google Sheets
-SPREADSHEET_ROWCOUNT_DRAFT = 100  # Количество строк в таблице по умолчанию
-SPREADSHEET_COLUMN_COUNT_DRAFT = 11  # Количество колонок в таблице по умолч.
+SPREADSHEET_ROWCOUNT_DRAFT: int = 100  # Количество строк в таблице по умолч.
+SPREADSHEET_COLUMN_COUNT_DRAFT: int = 11  # Кол-во колонок в таблице по умолч.
 
-# Константы для проверки длины имени
-MAX_LENGTH_FOR_NAME = 100  # Максимальная длина имени
-MIN_LENGTH_FOR_NAME = 1  # Минимальная длина имени
+# Константы для проверки длины имени и длины пароля
+MAX_LENGTH_FOR_NAME: int = 100  # Максимальная длина имени
+MIN_LENGTH_FOR_NAME: int = 1  # Минимальная длина имени
+MIN_LENGTH_FOR_PASSWORD: int = 3  # Минимальная длина пароля
 
 # Константы для настройки приложений
-DEFAULT_INVESTED_AMOUNT = 0  # Значение по умолчанию для инвестированной суммы
-TOKEN_LIFETIME = 3600  # Время жизни токена в секундах
-PASSWORD_MIN_LENGTH = 3  # Минимальная длина пароля
+DEFAULT_INVESTED_AMOUNT: int = 0  # Значение по умолч. для инвест-ой суммы
+TOKEN_LIFETIME: int = 3600  # Время жизни токена в секундах
+PASSWORD_MIN_LENGTH: int = 3  # Минимальная длина пароля
 
 # URL для доступа к Google Sheets
-GOOGLE_SHEETS_URL = 'https://docs.google.com/spreadsheets/d/'
+GOOGLE_SHEETS_URL: str = 'https://docs.google.com/spreadsheets/d/'
 
 # Права доступа к Google API
-SCOPES = (
+SCOPES: tuple[str, str] = (
     'https://www.googleapis.com/auth/spreadsheets',  # Доступ к Google Sheets
     'https://www.googleapis.com/auth/drive',  # Доступ к Google Drive
 )
 
 # Конфигурация для авторизации в Google API
-INFO = {
+INFO: dict[str, str] = {
     'type': settings.type,
     'project_id': settings.project_id,
     'private_key_id': settings.private_key_id,
@@ -40,7 +41,7 @@ INFO = {
 }
 
 # Шаблон тела документа Google Sheets
-SPREADSHEET_BODY = {
+SPREADSHEET_BODY: dict = {
     'properties': {
         'title': 'Отчет на ',  # Заголовок документа
         'locale': 'ru_RU',  # Локализация документа
@@ -59,7 +60,7 @@ SPREADSHEET_BODY = {
 }
 
 # Шаблон значений таблицы
-TABLE_VALUES_DRAFT = (
+TABLE_VALUES_DRAFT: tuple[tuple[str, ...], ...] = (
     ('Отчет от',),  # Заголовок отчета
     ('Топ проектов по скорости закрытия',),  # Название отчета
     ('Название проекта', 'Время сбора', 'Описание')  # Заголовки колонок
